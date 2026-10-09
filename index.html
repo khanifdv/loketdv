@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="LoketKu - Pesan tiket acara favoritmu dengan mudah.">
+  <title>LoketKu - Tiket Acara Online</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="#" class="logo"><span>●</span> LoketKu</a>
+
+    <nav>
+      <a href="#beranda">Beranda</a>
+      <a href="#acara">Cari Acara</a>
+      <a href="#tentang">Tentang</a>
+    </nav>
+
+    <a href="#acara" class="nav-button">Beli Tiket</a>
+  </header>
+
+  <main>
+    <section class="hero" id="beranda">
+      <div class="hero-content">
+        <span class="tag">PLATFORM TIKET ONLINE</span>
+        <h1>Temukan Acara.<br><span>Ciptakan Cerita.</span></h1>
+        <p>
+          Dari konser musik hingga festival seru, temukan pengalaman
+          terbaikmu dan pesan tiketnya dengan mudah.
+        </p>
+        <a href="#acara" class="primary-button">Jelajahi Acara ↗</a>
+
+        <div class="hero-stats">
+          <div><strong>100+</strong><small>Acara menarik</small></div>
+          <div><strong>10K+</strong><small>Pengunjung</small></div>
+          <div><strong>24/7</strong><small>Akses online</small></div>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <img
+          src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=1000&q=85"
+          alt="Konser musik dengan pencahayaan panggung">
+        <div class="floating-card">
+          <span class="live-dot"></span>
+          <div>
+            <strong>Live Experience</strong>
+            <small>Musik, seni, dan momen</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="search-section">
+      <div>
+        <span class="eyebrow">TEMUKAN KESERUANMU</span>
+        <h2>Mau pergi ke acara apa?</h2>
+      </div>
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="Cari konser, festival, seminar..."
+        aria-label="Cari acara">
+    </section>
+
+    <section class="events section" id="acara">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">PILIHAN TERBAIK</span>
+          <h2>Acara Populer</h2>
+        </div>
+        <span class="event-count" id="eventCount"></span>
+      </div>
+
+      <div class="filters">
+        <button class="filter active" data-category="Semua">Semua</button>
+        <button class="filter" data-category="Konser">Konser</button>
+        <button class="filter" data-category="Festival">Festival</button>
+        <button class="filter" data-category="Seminar">Seminar</button>
+      </div>
+
+      <div class="event-grid" id="eventGrid"></div>
+      <p class="empty-message" id="emptyMessage" hidden>
+        Acara tidak ditemukan. Coba kata kunci lainnya.
+      </p>
+    </section>
+
+    <section class="promo" id="tentang">
+      <div>
+        <span class="eyebrow">WAKTUNYA BERSENANG-SENANG</span>
+        <h2>Momen terbaik dimulai dari sini.</h2>
+        <p>Temukan acara favoritmu dan buat kenangan yang tidak terlupakan.</p>
+      </div>
+      <a href="#acara" class="primary-button">Cari Tiket Sekarang ↗</a>
+    </section>
+  </main>
+
+  <footer>
+    <a href="#" class="logo"><span>●</span> LoketKu</a>
+    <p>© <span id="year"></span> LoketKu. Dibuat untuk pengalaman acara yang lebih seru.</p>
+  </footer>
+
+  <!-- Modal pemesanan -->
+  <div class="modal" id="bookingModal" aria-hidden="true">
+    <div class="modal-content">
+      <button class="close-modal" id="closeModal" aria-label="Tutup">×</button>
+
+      <div id="bookingFormArea">
+        <span class="eyebrow">PESAN TIKET</span>
+        <h2 id="bookingTitle">Pilih tiketmu</h2>
+        <p class="modal-description" id="bookingDescription"></p>
+
+        <form id="bookingForm">
+          <label for="customerName">Nama lengkap</label>
+          <input id="customerName" type="text" required
+                 placeholder="Masukkan nama lengkap" maxlength="80">
+
+          <label for="customerEmail">Email</label>
+          <input id="customerEmail" type="email" required
+                 placeholder="nama@email.com" maxlength="120">
+
+          <label for="ticketQuantity">Jumlah tiket</label>
+          <select id="ticketQuantity">
+            <option value="1">1 tiket</option>
+            <option value="2">2 tiket</option>
+            <option value="3">3 tiket</option>
+            <option value="4">4 tiket</option>
+            <option value="5">5 tiket</option>
+          </select>
+
+          <div class="total-row">
+            <span>Total pembayaran</span>
+            <strong id="totalPrice">Rp0</strong>
+          </div>
+
+          <button type="submit" class="primary-button full-button">
+            Buat Pesanan
+          </button>
+        </form>
+      </div>
+
+      <div id="ticketResult" hidden>
+        <div class="success-icon">✓</div>
+        <h2>Pesanan berhasil dibuat!</h2>
+        <p class="modal-description">
+          Ini adalah konfirmasi pesanan demo. Belum ada pembayaran yang diproses.
+        </p>
+        <div class="ticket-preview">
+          <span class="eyebrow">TIKET DIGITAL DEMO</span>
+          <h3 id="resultEvent"></h3>
+          <p id="resultName"></p>
+          <p id="resultQuantity"></p>
+          <p id="resultOrder"></p>
+          <strong id="resultTotal"></strong>
+        </div>
+        <button id="finishBooking" class="primary-button full-button">
+          Selesai
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+          </html>
